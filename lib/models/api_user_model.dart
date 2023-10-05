@@ -21,6 +21,10 @@ class ApiUser {
       downloadUrl: json['download_url'],
     );
   }
+
+  get length => [];
+
+  getRange(int offset, int limit) {}
 }
 // class ApiUser {
 //   final int id;
