@@ -20,22 +20,42 @@ class UserService extends BaseService {
   }
 
   //Jsonplaceholder
-  Future<List<ApiUser>?> getUserApi() async {
+  // Future<List<ApiUser>?> getUserApi() async {
+  //   try {
+  //     final response = await getHttp('');
+  //     // log(response.body, name: 'getuserApi');
+
+  //     final userMapList = json.decode(response.body);
+
+  //     if (response.statusCode != 200) return null;
+  //     List<ApiUser> userList =
+  //         List<ApiUser>.from(userMapList.map((e) => ApiUser.fromjson(e)));
+  //     log(userMapList.toString(), name: 'getUserApiResponse');
+
+  //     return userList;
+  //   } catch (e, s) {
+  //     log(e.toString(), name: 'getUserApi error', stackTrace: s);
+  //     return null;
+  //   }
+  // }
+
+  //Reverpod
+  Future<List<ApiUser>> getUserApi() async {
     try {
-      final response = await getHttp('');
-      // log(response.body, name: 'getuserApi');
+      final response = await getHttp(ApiUrls.user);
+      log(response.body, name: 'getuserApi');
 
       final userMapList = json.decode(response.body);
 
-      if (response.statusCode != 200) return null;
+      if (response.statusCode != 200) return [];
       List<ApiUser> userList =
-          List<ApiUser>.from(userMapList.map((e) => ApiUser.fromjson(e)));
+          List<ApiUser>.from(userMapList.map((e) => ApiUser.fromJson(e)));
       log(userMapList.toString(), name: 'getUserApiResponse');
 
       return userList;
     } catch (e, s) {
       log(e.toString(), name: 'getUserApi error', stackTrace: s);
-      return null;
+      return [];
     }
   }
 }
