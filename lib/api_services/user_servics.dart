@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:instagram/api_services/base_service.dart';
 import 'package:instagram/models/api_user_model.dart';
+import 'package:instagram/models/random_model.dart';
 import 'package:instagram/utils/api_urls.dart';
 
 class UserService extends BaseService {
@@ -58,4 +59,49 @@ class UserService extends BaseService {
       return [];
     }
   }
+//Random(reverpod)
+  Future<RandomUser?> getRandomUserApis() async {
+    try {
+      final response = await getHttp('');
+
+      // log(response.statusCode.toString(), name: 'Status');
+      // log(response.body, name: 'getRandomUserApis');
+
+      final userMap = json.decode(response.body);
+
+      if (response.statusCode != 200) return null;
+      RandomUser user = RandomUser.fromJson(userMap['results'][0]);
+
+      log(userMap.toString(), name: 'getRandomUserApi response');
+
+      return user;
+    } catch (e, s) {
+      log(e.toString(), name: 'error getRandomUserApis', stackTrace: s);
+      return null;
+    }
+  }
 }
+
+// //random Api
+// class RandomUserServices extends BaseService {
+//   Future<RandomUser?> getRandomUserApis() async {
+//     try {
+//       final response = await getHttp('');
+
+//       // log(response.statusCode.toString(), name: 'Status');
+//       // log(response.body, name: 'getRandomUserApis');
+
+//       final userMap = json.decode(response.body);
+
+//       if (response.statusCode != 200) return null;
+//       RandomUser user = RandomUser.fromJson(userMap['results'][0]);
+
+//       log(userMap.toString(), name: 'getRandomUserApi response');
+
+//       return user;
+//     } catch (e, s) {
+//       log(e.toString(), name: 'error getRandomUserApis', stackTrace: s);
+//       return null;
+//     }
+//   }
+// }

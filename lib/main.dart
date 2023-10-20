@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:instagram/reverpod/reverpod.dart';
-import 'package:instagram/screens/user_screen.dart';
+import 'package:instagram/screens/random_user_screen.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
@@ -22,7 +21,8 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       // home: const MyHomePage(title: 'Home Page'),
-      home: const UserScreen(),
+      // home: const UserScreen(),
+      home: const RandomUserScreen(),
       // home: const ReverPodScreen(),
     );
   }
